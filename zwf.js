@@ -1,7 +1,6 @@
 const http = require('http');
 const url = require('url');
 const fs = require('fs');
-const { exec } = require('child_process');
 
 const port = 3030;
 
@@ -20,7 +19,31 @@ const server = http.createServer((req, res) => {
     } else if (req.url === '/films' && req.method === 'GET') {
         res.writeHead(200);
 
-        res.end(fs.readFileSync('films/films.json', 'utf8'));
+        let films = [];
+
+        fs.readdirSync('films').forEach(filmFolder => {
+            let film = {title: "", description: "", moviepath: "", imgpath: "frontend/src/unknown.jpg"}
+
+            film["title"] = filmFolder;
+
+            fs.readdirSync("films/" + filmFolder).forEach(file => {
+
+                // get movie description from file
+                if (file.split('.')[1] == "txt") {
+                    film["description"] = fs.readFileSync("films/" + filmFolder + "/" + file, 'utf8');
+                }
+
+                // get movie path
+                if (file.split('.')[1] == "mp4") film["moviepath"] = "films/" + filmFolder + "/" + file;
+
+                // get thumnail image path
+                if (file.split('.')[1] == "jpg") film["imgpath"] = "films/" + filmFolder + "/" + file;
+            })
+
+            films.push(film);
+        });
+
+        res.end(JSON.stringify(films));
 
     } else {
         res.writeHead(404);
@@ -33,18 +56,4 @@ server.listen(port, () => {
 });
 
 // Open frontend home page automatically after server starts
-exec('start frontend/home.html');
-
-// Read movie data from root/films/films.json
-var curentFilms = [];
-JSON.parse(fs.readFileSync('./films/films.json', 'utf8'))["films"].forEach(film => {
-    curentFilms.push(film["title"]);
-});
-var newFilms = [];
-fs.readdirSync('./films').forEach(film => {
-    if (!curentFilms.includes(film)) {
-        newFilms.push(film);
-    }
-});
-
-
+//exec('start frontend/home.html');

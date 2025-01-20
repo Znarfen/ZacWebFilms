@@ -1,4 +1,5 @@
 // Constants that are used in multiple js files
+
 const filmPath = "../films/";
 
 // to see debug msg in console
@@ -17,7 +18,7 @@ const footer =
     '<footer id="footer">' +
         '<p>Zacs Web Films</p>' +
         '<p>Started prodjekt on date: 2024-10-24</p>' +
-        '<p>Version: 0.1</p>' +
+        '<p>Version: 0.2</p>' +
         '<a target="_blank" href="https://github.com/Znarfen/ZacWebFilms">' +
             'GitHub' +
         '</a>' +
@@ -34,7 +35,7 @@ function bugPrint (msg = "",) {
     }
 }
 
-// Load movies (as json)
+// Load in stuff from be, ex: movie titles
 function call(get = "") {
     return fetch("http://localhost:3030/" + get)
         .then(response => response.json())

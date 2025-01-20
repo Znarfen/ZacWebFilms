@@ -1,29 +1,32 @@
 // Get selected film
 let film;
 if (window.location.href.includes('#')) {
-    loadMovie(window.location.href.split('#')[1]);
+    call("films").then(films => {
+        films.forEach(film => {
+            if (film["title"] == window.location.href.split('#')[1])
+                loadMovie(film);
+        });
+    });
+
 } else {
     call("films").then(films => {
-        loadMovie(films["films"][Math.floor(Math.random() * films["films"].length)]["title"]);
+        loadMovie(films[Math.floor(Math.random() * films.length)]);
     });
 }
 
 function loadMovie(film) {
-    document.getElementById("background").style.backgroundImage = "url(" + filmPath + film + "/img.jpg)";
+    document.getElementById("background").style.backgroundImage = "url(../" + film["imgpath"] + ")";
     document.body.style.backgroundImage = "none";
-    let src = filmPath + film + "/mov";
 
     // Create video html element to play a movie
     document.getElementById("video_div").innerHTML = "" +
-        "<video controls src='" + src + ".mp4' type='video/webm'></video>"
+        "<video controls src='../" + film["moviepath"] + "' type='video/webm'></video>"
 
     // Load film description
-    call("films").then((data) => {
-            data["films"].forEach(element => {
-                if (element["title"] == film) {
-                    document.getElementById("description").innerHTML = element["description"];
-                    document.title = "ZWF: " + element["title"];
-                }
-            });
-        })
+    if (film["description"] != "") {
+        document.getElementById("description").innerHTML = film["description"];
+        document.title = "ZWF: " + film["title"];
+    } else {
+        document.getElementById("description").style.display = "none";
+    }
 }
