@@ -1,4 +1,5 @@
 <!-- Main Page / Home -->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,24 +13,31 @@
     <body>
         <div>
             <div>
-                <div class="hero" id="hero1" onclick="openfilm()">
-                    <div>
-                        <h1 id="hero-title">Title</h1>
-                        <p id="hero-description">description</p>
+                <div class="hero" id="hero1">
+                    <div class="hero-side-bar">
+                        <div class="hero-side-text">
+                            <h1 id="hero-title">Title</h1>
+                            <p id="hero-description">description</p>
+                        </div>
+                        <button id="play-film-hero">▶ PLAY</button>
                     </div>
+                    
                 </div>
 
                 <div class="hero" id="hero2">
                     <img src="src/hero/githublogo.png">
                 </div>
 
-                <div class="hero" id="hero3" style="background-color: rgb(76, 76, 76);">
-
+                <div class="hero" id="hero3">
+                    <h1>V 0.3</h1>
+                    <div>
+                        <li>Added new page to hero</li>
+                        <li>New play button on hero 1</li>
+                        <li>You can no longer click on the hero itself</li>
+                    </div>
                 </div>
             </div>
             <div id="waiting-bar" class="waiting-bar"></div>
-
-            <button onclick="changeHero()"></button>
         </div>
 
         <div id="content" class="content"></div>

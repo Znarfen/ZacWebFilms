@@ -1,5 +1,4 @@
 // Constants that are used in multiple js files
-
 const filmPath = "../films/";
 
 // to see debug msg in console
@@ -8,17 +7,18 @@ const debuging = true;
 // Used to load fotter and navbar on all pages
 const navbar = 
     '<nav id="navbar">' +
-    '<img src="src/icon.png">' +
-    '<div class="nav-links">' +
-        '<a href="home.html">HOME</a>' +
-        '<a href="videoplayer.html">RANDOM</a>' +
-    '</div>' +
+        '<img src="src/icon.png">' +
+        '<div class="nav-links">' +
+            '<a href="home.html">HOME</a>' +
+            '<a href="videoplayer.html">RANDOM</a>' +
+            '<a href="how.html">HOW TO</a>' +
+        '</div>' +
     '</nav>';
 const footer =
     '<footer id="footer">' +
         '<p>Zacs Web Films</p>' +
         '<p>Started prodjekt on date: 2024-10-24</p>' +
-        '<p>Version: 0.2</p>' +
+        '<p>Version: 0.3</p>' +
         '<a target="_blank" href="https://github.com/Znarfen/ZacWebFilms">' +
             'GitHub' +
         '</a>' +
@@ -27,13 +27,6 @@ const footer =
         '</a>' +
     '</footer>'
 document.body.innerHTML = navbar + document.body.innerHTML + footer;
-
-// Debug tool
-function bugPrint (msg = "",) {
-    if (debuging) {
-        console.log("debug(" + bugPrint.caller.name + "):\n\t", msg);
-    }
-}
 
 // Load in stuff from be, ex: movie titles
 function call(get = "") {

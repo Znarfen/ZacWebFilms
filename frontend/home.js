@@ -7,8 +7,6 @@ call("films").then(films => {
 
 // Load movies
 function loadThumbnails(film) {
-    //bugPrint("films: " + film["title"]);
-
     // Create actual image for thumbnail
     let pick = document.createElement("img")
     pick.setAttribute("src", "../" + film["imgpath"]);
@@ -52,20 +50,24 @@ function changeHero() {
 function hero1() {
     call("films").then(films => {
         let film = films[Math.floor(Math.random() * films.length)];
-        hero("hero1", "../" + film["imgpath"], "videoplayer.html#" + film["title"])
+        hero("hero1", "../" + film["imgpath"])
         document.getElementById("hero-title").innerHTML = film["title"];
         document.getElementById("hero-description").innerHTML = film["description"];
+
+        // Play movie when button is clicked
+        document.getElementById("play-film-hero").addEventListener("click", () => {
+            window.location = "videoplayer.html#" + film["title"];
+        })
     });
 }
 
-function hero(heroIndex, bg, url) {
+function hero(heroIndex, bg) {
     document.getElementById(heroIndex).style.backgroundImage = "url(" + bg + ")";
-    document.getElementById(heroIndex).onclick = function(){window.open(url)};
 }
 
-
 hero1();
-hero("hero2", "src/hero/github.png", "https://github.com/Znarfen/ZacWebFilms")
+hero("hero2", "src/hero/github.png")
+hero("hero3", "src/hero/zwfbg.png")
 
 let barLeng = 0.0;
 let curentHero = changeHero();
