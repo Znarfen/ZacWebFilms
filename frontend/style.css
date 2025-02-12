@@ -11,7 +11,7 @@ body{
     background-attachment: fixed;  
 }
 
-p, h1 {
+p, h1, h2 {
     color: rgb(255, 255, 255);
     font-size: large;
     text-align: center;
@@ -226,4 +226,55 @@ footer {
     height: 100%;
     filter: blur(4px);
     z-index: -1;
+}
+
+.how-to {
+    margin-top: 200px;
+    margin-bottom: 100px;
+}
+
+.how-to h1 {
+    font-size: 24px;
+}
+
+.how-to h2 {
+    font-size: 20px;
+    margin-top: 70px;
+}
+
+.how-to p {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.text-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.text-img img {
+    width: 40%;
+    margin: 5px;
+    border-radius: 7px;
+    border: 2px solid white;
+}
+
+.text-img p {
+    width: 40%;
+    margin: 5px;
+}
+
+@media screen and (max-width: 1100px) {
+    .text-img {
+        display: block;
+    }
+    .text-img img {
+        width: calc(100% - 10px);
+    }
+    .text-img p {
+        width: calc(100% - 10px);
+        margin-bottom: 50px;
+    }
 }
