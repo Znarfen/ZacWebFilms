@@ -18,7 +18,7 @@ const footer =
     '<footer id="footer">' +
         '<p>Zacs Web Films</p>' +
         '<p>Started prodjekt on date: 2024-10-24</p>' +
-        '<p>Version: 0.4</p>' +
+        '<p>Version: 1.0</p>' +
         '<a target="_blank" href="https://github.com/Znarfen/ZacWebFilms">' +
             'GitHub' +
         '</a>' +
