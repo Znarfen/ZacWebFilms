@@ -10,7 +10,7 @@ function loadThumbnails(film) {
     // Create actual image for thumbnail
     let pick = document.createElement("img")
     pick.setAttribute("src", "../" + film["imgpath"]);
-    console.log( "../" + film["imgpath"])
+    //console.log( "../" + film["imgpath"])
 
     // Create a title
     let title = document.createElement("p");
@@ -29,6 +29,7 @@ function loadThumbnails(film) {
     document.getElementById("content").appendChild(thumbnail);
 }
 
+// Change hero
 function changeHero() {
     if (document.getElementById("hero1").style.display == "inherit") {
         document.getElementById("hero1").style.display = "none";
@@ -47,12 +48,24 @@ function changeHero() {
     }
 }
 
+// Randomly display a movie in hero1
 function hero1() {
     call("films").then(films => {
         let film = films[Math.floor(Math.random() * films.length)];
+
+        // Display film description (only the first 400 characters)
+        document.getElementById("hero-description").innerHTML = "";
+        for (let i = 0; i < film["description"].length; i++) {
+            document.getElementById("hero-description").innerHTML += film["description"][i];
+            if (i >= 400 && film["description"][i] == " ") {
+                document.getElementById("hero-description").innerHTML += "...";
+                break;
+            }
+        }
+
         hero("hero1", "../" + film["imgpath"])
         document.getElementById("hero-title").innerHTML = film["title"];
-        document.getElementById("hero-description").innerHTML = film["description"];
+        //document.getElementById("hero-description").innerHTML = film["description"];
 
         // Play movie when button is clicked
         document.getElementById("play-film-hero").addEventListener("click", () => {
@@ -61,10 +74,12 @@ function hero1() {
     });
 }
 
+// General hero display
 function hero(heroIndex, bg) {
     document.getElementById(heroIndex).style.backgroundImage = "url(" + bg + ")";
 }
 
+// Load all heros
 hero1();
 hero("hero2", "src/hero/github.png")
 hero("hero3", "src/hero/zwfbg.png")

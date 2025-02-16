@@ -31,11 +31,13 @@ document.body.innerHTML = navbar + document.body.innerHTML + footer;
 // Load in stuff from be, ex: movie titles
 function call(get = "") {
     return fetch("http://localhost:3030/" + get)
-        .then(response => response.json())
+        .then((response) => {
+            return response.json()
+        })
     /* 
     // to future me this is how to use call()
     call("films").then(result => {
-        bugPrint((result));
+        console.log((result));
     });
     */
 }
